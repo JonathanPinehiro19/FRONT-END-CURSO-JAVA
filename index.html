@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/index.css">
+    <!-- Carrega o CSS específico de uma página-->
+    <link rel="stylesheet" href="" id="pagecss">
     <title>FrontEnd</title>
     <link rel="shortcut icon" href="/img/logo.png">
 </head>
@@ -19,15 +21,15 @@
         <!--Cabeçalho-->
 
         <header>
-            <a href="/"><img src="/img/logo.png" alt="Logotipo de FrontEnd."></a>
-            <h1>FrontEnd<small>Programando para o futuro</small></h1>
+            <a href="home"><img src="/img/logo.png" alt="Logotipo de FrontEnd."></a>
+            <h1 id="h1">FrontEndeiros<small>Programando para o futuro</small></h1>
         </header>
 
         <!--Menu-->
 
         <nav>
             <!-- Item de menu -->
-            <a href="/">
+            <a href="home">
 
                 <!-- Ícone do item do menu -->
                 <i class="fa-solid fa-house fa-fw"></i>
@@ -37,15 +39,15 @@
             </a>
 
             <!-- Os outros itens seguem o mesmo padrão acima -->
-            <a href="/contacts">
+            <a href="contacts">
                 <i class="fa-solid fa-headset fa-fw"></i>
                 <span>Contatos</span>
             </a>
-            <a href="/about">
+            <a href="about">
                 <i class="fa-solid fa-circle-info fa-fw"></i>
                 <span>Sobre</span>
             </a>
-            <a href="/profile">
+            <a href="user">
                 <i class="fa-solid fa-user fa-fw"></i>
                 <span>Login</span>
             </a>
@@ -61,7 +63,7 @@
 
             <!-- Primeira linha do rodapé -->
             <div class="footer-top">
-                <a href="/">
+                <a href="home">
                     <i class="fa-solid fa-house fa-fw"></i>
                 </a>
                 <div>&copy; 2023 Jonathan Pinheiro</div>
