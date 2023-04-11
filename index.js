@@ -59,11 +59,30 @@ function myApp() {
      * Posteriormente, esta chamada à "loadpage()" será otimizada para melhorar
      * o paradigma "SEO Friendly" do aplicativo.
      **/
-    loadpage('home')
+    //loadpage('home')
     /**
      * jQuary→Monitora cliques em elementos '<a>' que, se ocorre, chama a função
      * routerLink().
      */
+
+    
+    /**
+      * Obtém nome da página que está sendo acessada, do 'localStorage'.
+      * Estude '/404.html' para mais detalhes.
+      **/
+    let path = localStorage.path
+    if (path) {                     // Se cliente está acessando uma página específica...
+        delete localStorage.path    // Limpa o 'localStorage'.
+        loadpage(path);             // Acessa a página solicitada.
+    } else {                        // Se não solicitou uma página específica...
+        loadpage('home');           // Carrega a página inicial.
+    }
+
+
+
+
+
+
     $(document).on('click','a', routerLink)
 
 }
