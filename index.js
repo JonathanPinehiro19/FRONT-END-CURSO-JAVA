@@ -50,7 +50,11 @@ $(document).ready(myApp)
  *  • https://www.w3schools.com/js/js_functions.asp
  **/
 function myApp() {
-
+    /**
+         * IMPORTANTE!
+         * Para que o roteamento funcione corretamente no "live server", é 
+         * necessário que erros 404 abram a página "index.html".
+         **/
     /**
      * Faz a carga da página inicial do SPA. A página a ser carregada na 
      * inicialização é definida pela string parâmetro e corresponde a uma
@@ -65,7 +69,7 @@ function myApp() {
      * routerLink().
      */
 
-    
+
     /**
       * Obtém nome da página que está sendo acessada, do 'localStorage'.
       * Estude '/404.html' para mais detalhes.
@@ -83,7 +87,7 @@ function myApp() {
 
 
 
-    $(document).on('click','a', routerLink)
+    $(document).on('click', 'a', routerLink)
 
 }
 
@@ -219,22 +223,22 @@ function loadpage(page) {
              */
             console.error(error)
         })
+    /**
+        * Rola a tela para o início, útil para links no final da página.
+        * Referências:
+        *  • https://www.w3schools.com/jsref/met_win_scrollto.asp
+        **/
+    window.scrollTo(0, 0);
 
+    /**
+     * Atualiza URL da página com o endereço da rota:
+     * Referências:
+     *  • https://developer.mozilla.org/en-US/docs/Web/API/History/pushState
+     **/
+    window.history.pushState({}, '', page);
 }
 
-/**
-    * Rola a tela para o início, útil para links no final da página.
-    * Referências:
-    *  • https://www.w3schools.com/jsref/met_win_scrollto.asp
-    **/
-window.scrollTo(0, 0);
 
-/**
- * Atualiza URL da página com o endereço da rota:
- * Referências:
- *  • https://developer.mozilla.org/en-US/docs/Web/API/History/pushState
- **/
-window.history.pushState({}, '', page);
 /**
  * Muda o título da página → <title></title>
  * 
@@ -257,6 +261,6 @@ function changeTitle(title = '') {
     else pageTitle += title
 
     $('title').html(pageTitle)
-    
+
 
 }
