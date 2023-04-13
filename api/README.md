@@ -1,0 +1,1 @@
+Será necessário realizar uma nova instalação do json server, com node command prompt numa nova clonagem de repositório com o github.

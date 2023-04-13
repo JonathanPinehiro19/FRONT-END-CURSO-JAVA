@@ -1,4 +1,9 @@
 /**
+ * FrontEndeiros 1.0
+ * MIT License 2023 By Luferat
+ **/
+
+/**
  * 
  * JavaScript do aplicativo.
  * Depende de "jQuery" (https://jquery.com/).
@@ -15,17 +20,17 @@
  *  • https://www.w3schools.com/jsref/
  *  • https://www.w3schools.com/jquery/
  **/
-/**
- * Algumas configurações do Aplicativo.
- * Dica: você pode acrescentar novas configurações aqui se precisar.
- * 
- */
-var app = {
-    siteName: 'FrontEndeiros',
-    siteSlogam: 'Progamando para o futuro',
-    siteLicense: '&copy; 2023 Jonathan Pinheiro',
 
+/**
+ * Algumas configurações do aplicativo.
+ * Dica: você pode acrescentar novas configurações aqui se precisar.
+ **/
+ var app = {
+    siteName: 'FrontEndeiros',
+    siteSlogan: 'Programando para o futuro',
+    apiContactsURL: 'http://localhost:3000/contacts'
 }
+
 /**
  * jQuery → Quando o documento estiver pronto, executa a função principal,
  * 'runApp()'.
@@ -83,27 +88,54 @@ function myApp() {
 
 /**
  * Função que processa o clique em um link.
- * 
- */
+ **/
 function routerLink() {
 
+    /**
+     * Extrai o valor do atributo "href" do elemento clicado e armazena na 
+     * variável "href".
+     * 
+     * OBS: $(this) faz referência especificamente ao elemento que foi clicado.
+     * 
+     * Referências:
+     *  • https://api.jquery.com/attr/
+     *  • https://www.w3schools.com/jquery/jquery_syntax.asp
+     **/
     var href = $(this).attr('href').trim().toLowerCase()
-    console.log(href)
 
-    // Detecta clique em links externos e âncoras (#).
+    /**
+     * Se clicou em um link externo (http://... OU https://...) ou em uma 
+     * âncora (#...),devolve o controle da página para o navegador (return true) 
+     * que fará o processamento normal.
+     * 
+     * OBS: Os carateres '||' (pipe pipe) significam a lógica 'OR' (OU) onde, se 
+     * apenas uma das expressões for verdadeira, todas as expressões serão 
+     * verdadeiras. Consulte as referências.
+     * 
+     * Referências:
+     *  • https://www.w3schools.com/js/js_if_else.asp
+     *  • https://www.w3schools.com/jsref/jsref_substr.asp
+     *  • https://www.w3schools.com/js/js_comparisons.asp
+     **/
     if (
         href.substring(0, 7) == 'http://' ||
         href.substring(0, 8) == 'https://' ||
+        href.substring(0, 4) == 'tel:' ||
+        href.substring(0, 7) == 'mailto:' ||
         href.substring(0, 1) == '#'
-    ) {
+    )
         // Devolve o controle para o HTML.
         return true
-    }
 
-    // Exibe a página da rota clicada.
+    /**
+     * Carrega a rota solicitada.
+     **/
     loadpage(href)
 
-    // Bloqueia o funcionamento normal do link.
+    /**
+     * Encerra o processamento do link sem fazer mais nada. 'return false' 
+     * bloqueia a ação normal do navegador sobre um link.
+     **/
     return false
 }
 
@@ -128,7 +160,7 @@ function routerLink() {
  *  5. Já para carregar esta página no SPA pelo JavaScript, comandamos 
  *     "loadpage('mypage')", por exemplo.
  **/
- function loadpage(page, updateURL = true) {
+function loadpage(page, updateURL = true) {
 
     /*
      * Monta os caminhos (path) para os componentes da página solicitada, 
@@ -215,29 +247,40 @@ function routerLink() {
 
 }
 
-
 /**
  * Muda o título da página → <title></title>
- * 
  * 
  * Instruções:
  * Em cada arquivo "index.js" de cada página, inclua uma chamada para esta 
  * função, passando como parâmetro o título que deve aparecer.
  * 
- * Quando o parâmetro estiver vazio o título será:
- * → app.sitename - app.siteslogam
- * Qunado o parâmetro for informado,  título será:
- * → app.sitename - parâmetro
- */
+ * Quando o parâmetro estiver vazio (DEFAULT) o título será:
+ *  • app.sitename - app.siteslogan
+ * Quando o parâmetro for informado, o título será:
+ *  • app.sitename - parâmetro
+ * 
+ **/
 function changeTitle(title = '') {
 
+    /**
+     * Define o título padrão da página.
+     */
     let pageTitle = app.siteName + ' - '
 
+    /**
+     * Se não foi definido um título para a página, 
+     * usa o slogan.
+     **/
+    if (title == '') pageTitle += app.siteSlogan
 
-    if (title == '') pageTitle += app.siteSlogam
+    /**
+     * Se foi definido um título, usa-o.
+     */
     else pageTitle += title
 
+    /**
+     * Escreve o novo título na tag <title></title>.
+     */
     $('title').html(pageTitle)
-
 
 }
